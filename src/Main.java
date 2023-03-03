@@ -4,16 +4,21 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     // If want random grid change GRID_SIZE TO 0
-    int GRID_SIZE = 10;
+    int GRID_SIZE_X = 10;
+    int GRID_SIZE_Y = 10;
     int NUM_GENERATIONS = 0;
     int SPEED_MS = 0;
     private boolean[][] grid;
 
     /**
-     *  In here have the parameters : Size of Grid, Number of generations and the Speed to print the generations
+     *  In here have the parameters : Size of Grid X and Y, Number of generations and the Speed to print the generations
      */
     public Main() {
-        System.out.println("The size of grid is default 10x10");
+        System.out.println("Put the Grid Width: ");
+        GRID_SIZE_Y = sc.nextInt();
+
+        System.out.println("Put the Grid Height: ");
+        GRID_SIZE_X = sc.nextInt();
 
         System.out.println("Put number of generations: ");
         NUM_GENERATIONS = sc.nextInt();
@@ -21,32 +26,32 @@ public class Main {
         System.out.println("Put Speed to print in milliseconds: ");
         SPEED_MS = sc.nextInt();
 
-        grid = new boolean[GRID_SIZE][GRID_SIZE];
+        grid = new boolean[GRID_SIZE_X][GRID_SIZE_Y];
     }
 
     // Class to initialize with the specified grid
-    public void setInitialPopulation(boolean[][] initialPopulation) {
+    /*public void setInitialPopulation(boolean[][] initialPopulation) {
         for (int i = 0; i < initialPopulation.length; i++) {
             for (int j = 0; j < initialPopulation[i].length; j++) {
                 grid[i][j] = initialPopulation[i][j];
             }
         }
-    }
+    }*/
 
     // Class to initialize the random grid
-    /* public void initializeGrid() {
+     public void initializeGrid() {
         // randomly initialize the grid
-        for (int i = 0; i < GRID_SIZE; i++) {
-            for (int j = 0; j < GRID_SIZE; j++) {
+        for (int i = 0; i < GRID_SIZE_X; i++) {
+            for (int j = 0; j < GRID_SIZE_Y; j++) {
                 grid[i][j] = Math.random() < 0.5;
             }
         }
-    } */
+    }
 
     // Class to print the grid
     public void printGrid() {
-        for (int i = 0; i < GRID_SIZE; i++) {
-            for (int j = 0; j < GRID_SIZE; j++) {
+        for (int i = 0; i < GRID_SIZE_X; i++) {
+            for (int j = 0; j < GRID_SIZE_Y; j++) {
                 System.out.print(grid[i][j] ? "X " : ". ");
             }
             System.out.println();
@@ -59,9 +64,9 @@ public class Main {
             printGrid();
 
             // for calculate the next generation
-            boolean[][] nextGrid = new boolean[GRID_SIZE][GRID_SIZE];
-            for (int i = 0; i < GRID_SIZE; i++) {
-                for (int j = 0; j < GRID_SIZE; j++) {
+            boolean[][] nextGrid = new boolean[GRID_SIZE_X][GRID_SIZE_Y];
+            for (int i = 0; i < GRID_SIZE_X; i++) {
+                for (int j = 0; j < GRID_SIZE_Y; j++) {
                     int numNeighbors = countNeighbors(i, j);
                     if (grid[i][j]) {
                         // if cell is alive
@@ -92,7 +97,7 @@ public class Main {
             for (int j = -1; j <= 1; j++) {
                 int neighborX = x + i;
                 int neighborY = y + j;
-                if (neighborX >= 0 && neighborX < GRID_SIZE && neighborY >= 0 && neighborY < GRID_SIZE && !(i == 0 && j == 0)) {
+                if (neighborX >= 0 && neighborX < GRID_SIZE_X && neighborY >= 0 && neighborY < GRID_SIZE_Y && !(i == 0 && j == 0)) {
                     if (grid[neighborX][neighborY]) {
                         count++;
                     }
@@ -105,7 +110,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         Main main = new Main();
         // Set the initial population here to specified grid
-        boolean[][] initialPopulation = {
+        /*boolean[][] initialPopulation = {
                 {false, false, false, false, false, false, false, false, false, false},
                 {false, false, false, false, false, false, false, false, false, false},
                 {true, false, true, false, true, false, false, false, false, false},
@@ -118,10 +123,10 @@ public class Main {
                 {false, false, false, false, false, false, false, false, false, false}
         };
         // to specified grid
-        main.setInitialPopulation(initialPopulation);
+        main.setInitialPopulation(initialPopulation);*/
 
         // to random grid
-        // main.initializeGrid();
+        main.initializeGrid();
 
         main.runGame();
     }
