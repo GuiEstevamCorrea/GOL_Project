@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
+    /**
+     * @author Guilherme Estevam Correa
+     */
     Scanner sc = new Scanner(System.in);
 
     // If want random grid change GRID_SIZE TO 0
@@ -14,6 +17,9 @@ public class Main {
      *  In here have the parameters : Size of Grid X and Y, Number of generations and the Speed to print the generations
      */
     public Main() {
+        /**
+         * To receive the parameters
+         */
         System.out.println("Welcome to Game of Life!\n");
 
         System.out.println("Put the Grid Width: ");
@@ -40,8 +46,10 @@ public class Main {
         }
     }*/
 
-    // Class to initialize the random grid
-     public void initializeGrid() {
+    public void initializeGrid() {
+        /**
+         * Class to initialize the random grid
+         */
         // randomly initialize the grid
         for (int i = 0; i < GRID_SIZE_X; i++) {
             for (int j = 0; j < GRID_SIZE_Y; j++) {
@@ -50,8 +58,10 @@ public class Main {
         }
     }
 
-    // Class to print the grid
     public void printGrid() {
+        /**
+         * Class to print the grid
+         */
         for (int i = 0; i < GRID_SIZE_X; i++) {
             for (int j = 0; j < GRID_SIZE_Y; j++) {
                 System.out.print(grid[i][j] ? "X " : ". ");
@@ -65,18 +75,24 @@ public class Main {
             System.out.println("Generation " + (generation + 1));
             printGrid();
 
-            // for calculate the next generation
             boolean[][] nextGrid = new boolean[GRID_SIZE_X][GRID_SIZE_Y];
+            /**
+             * for calculate the next generation
+             */
             for (int i = 0; i < GRID_SIZE_X; i++) {
                 for (int j = 0; j < GRID_SIZE_Y; j++) {
                     int numNeighbors = countNeighbors(i, j);
                     if (grid[i][j]) {
-                        // if cell is alive
+                        /**
+                         * if cell is alive
+                         */
                         if (numNeighbors == 2 || numNeighbors == 3) {
                             nextGrid[i][j] = true;
                         }
                     } else {
-                        // if cell is dead
+                        /**
+                         * if cell is dead
+                         */
                         if (numNeighbors == 3) {
                             nextGrid[i][j] = true;
                         }
@@ -92,8 +108,11 @@ public class Main {
         }
     }
 
-    // Class to the rules of the game
+
     private int countNeighbors(int x, int y) {
+        /**
+         * Class to the rules of the game
+         */
         int count = 0;
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
