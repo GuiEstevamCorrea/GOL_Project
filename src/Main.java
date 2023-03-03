@@ -4,8 +4,8 @@ public class Main {
     Scanner sc = new Scanner(System.in);
 
     // If want random grid change GRID_SIZE TO 0
-    int GRID_SIZE_X = 10;
-    int GRID_SIZE_Y = 10;
+    int GRID_SIZE_X = 0;
+    int GRID_SIZE_Y = 0;
     int NUM_GENERATIONS = 0;
     int SPEED_MS = 0;
     private boolean[][] grid;
@@ -14,6 +14,8 @@ public class Main {
      *  In here have the parameters : Size of Grid X and Y, Number of generations and the Speed to print the generations
      */
     public Main() {
+        System.out.println("Welcome to Game of Life!\n");
+
         System.out.println("Put the Grid Width: ");
         GRID_SIZE_Y = sc.nextInt();
 
